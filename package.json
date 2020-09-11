@@ -5,10 +5,13 @@
   "main": "index.js",
   "scripts": {
     "build": "babel src --extensions \".js,.ts\" --out-dir dist --copy-files ",
-    "dev:server": "ts-node-dev -r tsconfig-paths/register --inspect --transpileOnly --ignore-watch node_modules src/shared/infra/http/server.ts",
+    "dev:server": "ts-node-dev -r tsconfig-paths/register --inspect --transpileOnly --ignore-watch node_modules src/server.ts",
     "start": "ts-node src/shared/infra/http/server.ts",
     "typeorm": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
-    "test": "jest"
+    "test": "jest",
+    "knex:migrate:make": "knex --knexfile knexfile.ts -x ts migrate:make",
+    "knex:migrate:latest": "knex --knexfile knexfile.ts migrate:latest",
+    "knex:migrate:rollback": "knex --knexfile knexfile.ts migrate:rollback"
   },
   "keywords": [],
   "author": "",
@@ -25,6 +28,7 @@
     "express": "^4.17.1",
     "express-async-errors": "^3.1.1",
     "jsonwebtoken": "^8.5.1",
+    "knex": "^0.21.5",
     "mime": "^2.4.6",
     "mongodb": "^3.5.8",
     "multer": "^1.4.2",
@@ -32,6 +36,7 @@
     "pg": "^8.0.2",
     "rate-limiter-flexible": "^2.1.7",
     "reflect-metadata": "^0.1.13",
+    "sqlite3": "^5.0.0",
     "tsyringe": "^4.2.0",
     "typeorm": "^0.2.24",
     "typescript": "^3.8.3",
@@ -62,6 +67,7 @@
     "jest": "^26.0.1",
     "prettier": "^2.0.4",
     "ts-jest": "^26.1.0",
+    "ts-node": "^9.0.0",
     "ts-node-dev": "^1.0.0-pre.44",
     "tsconfig-paths": "^3.9.0"
   }
